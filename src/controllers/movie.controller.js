@@ -2,7 +2,7 @@ const catchError = require('../utils/catchError');
 const Movie = require('../models/Movie');
 const Director = require('../models/Director');
 const Actor = require('../models/Actor');
-const Gender = require('../models/Gender')
+const Gender = require('../models/Genre')
 
 const getAll = catchError(async(req, res) => {
     const results = await Movie.findAll( {
@@ -58,8 +58,8 @@ const setGenres = catchError(async (req, res) => {
     const movie = await Movie.findByPk(id); 
     if(!movie) return res.sendStatus(400)
 
-    await movie.setGenders(req.body)
-    const genres = await movie.getGenders() 
+    await movie.setGenres(req.body)
+    const genres = await movie.getGenres() 
     return(res.json(genres))
 });
 
